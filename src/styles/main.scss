@@ -60,7 +60,6 @@ body {
 		gap: 24px;
 		padding: 24px;
 		background-color: $backgroundSecondary;
-		flex-wrap: wrap;
 	}
 }
 
@@ -174,5 +173,39 @@ body {
 		line-height: 25px;
 		padding: 0;
 		margin: 0;
+	}
+}
+
+@media screen and (max-width: $tablet) {
+	.search {
+		&__wrapper {
+			max-width: 75%;
+		}
+	}
+}
+
+@media only screen and (max-width:$tabletSmall) {
+	.search {
+		&__wrapper {
+			max-width: 90%;
+		}
+	}
+
+	.container {
+		padding: 10px;
+	}
+}
+
+@media screen and (max-width: $mobile) {
+	.search {
+		&__container {
+			flex-direction: column;
+		}
+	}
+
+	.card-container {
+		&__card {
+			flex: 0 0 90%;
+		}
 	}
 }
