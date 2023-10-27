@@ -1,28 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap');
+@import 'theme.scss';
 
 * {
 	box-sizing: border-box;
 }
 
 :root {
-	/* color */
-	--background-primary: #f9f9f9;
-	--background-secondary: #edeff0;
-	--background-white: #ffffff;
-
-	--color-main: #4a4a68;
-
-	/* typography */
-	--family-primary: 'Open Sans', sans-serif;
-	--family-secondary: 'Merriweather', serif;
-
-	--wight-bold: 700;
-	--wight-sub: 600;
-	--wight-normal: 400;
-
-	--size-main: 18px;
-	--size-min: 16px;
-
+	/* ico */
 	--mail-ico: url('/src/assets/mail.svg') no-repeat center center;
 	--phone-ico: url('/src/assets/phone.svg') no-repeat center center;
 	--birth-ico: url('/src/assets/birth.svg') no-repeat center center;
@@ -32,10 +16,10 @@
 
 body {
 	margin: 0;
-	background-color: var(--background-primary);
-	font-family: var(--family-primary);
-	font-size: var(--size-main);
-	font-weight: var(--wight-normal);
+	background-color: $backgroundPrimary;
+	font-family: $familyPrimary;
+	font-size: $sizeMain;
+	font-weight: $wightNormal;
 }
 
 .main-container {
@@ -43,6 +27,7 @@ body {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	background-color: $backgroundPrimary;
 }
 
 .container {
@@ -63,18 +48,18 @@ body {
 		margin-top: 80px;
 	}
 	&__title {
-		font-family: var(--family-secondary);
+		font-family: $familySecondary;
 		font-size: 24px;
 		margin-top: 0;
-		color: var(--color-main);
-		font-weight: var(--wight-bold);
+		color: $colorMain;
+		font-weight: $wightBold;
 	}
 	&__container {
 		display: flex;
 		width: 100%;
 		gap: 24px;
 		padding: 24px;
-		background-color: var(--background-secondary);
+		background-color: $backgroundSecondary;
 		flex-wrap: wrap;
 	}
 }
@@ -95,15 +80,15 @@ body {
 	width: 100%;
 	flex: 0 0 30%;
 	&__text {
-		font-family: var(--family-secondary);
-		font-size: var(--size-min);
-		font-weight: var(--wight-sub);
+		font-family: $familySecondary;
+		font-size: $sizeMin;
+		font-weight: $wightSub;
 		line-height: 22px;
 		padding: 0;
 		margin: 0;
 	}
 	&__input {
-		background-color: var(--background-white);
+		background-color: $backgroundWhite;
 		padding: 13px 32px 13px 32px;
 	}
 	&__btn {
@@ -120,7 +105,7 @@ body {
 	margin-bottom: 60px;
 	&__card {
 		flex: 0 0 30%;
-		background-color: var(--background-white);
+		background-color: $backgroundWhite;
 		border-radius: 2px;
 		gap: 24px;
 		border: 1px solid #eaeaed80;
@@ -130,9 +115,9 @@ body {
 
 .card {
 	&__name {
-		font-family: var(--family-secondary);
-		font-size: var(--size-main);
-		font-weight: var(--wight-bold);
+		font-family: $familySecondary;
+		font-size: $sizeMain;
+		font-weight: $wightBold;
 		line-height: 25px;
 	}
 
@@ -184,8 +169,8 @@ body {
 	}
 
 	&__item-text {
-		font-size: var(--size-main);
-		font-weight: var(--wight-normal);
+		font-size: $sizeMain;
+		font-weight: $wightNormal;
 		line-height: 25px;
 		padding: 0;
 		margin: 0;
