@@ -1,11 +1,14 @@
 {
 	"name": "mk-search",
+	"homepage": "https://danilweda.github.io/mk-search",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
 		"build": "webpack --mode production",
 		"dev": "webpack serve",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist",
 		"eslint": "eslint . --ignore-path .gitignore",
 		"style": "prettier --write . ",
 		"fixAll": "eslint . --fix  && npm run style",
@@ -39,5 +42,9 @@
 	"lint-staged": {
 		"src/**/*.{js, html.css}": "npm run style",
 		"src/**/*.js": "npm run eslint"
+	},
+	"dependencies": {
+		"gh-pages": "^6.0.0",
+		"normalize.css": "^8.0.1"
 	}
 }
