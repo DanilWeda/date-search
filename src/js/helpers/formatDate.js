@@ -27,7 +27,8 @@ export const getCorrectDayOrMonth = (dayOrMonth) => {
 };
 
 export const concatYearAndMonth = (year, month) => {
-	return `${year}-${month}`;
+	if (month > 9) return `${year}-${month}`;
+	return `${year}-0${month}`;
 };
 
 export const getNumFromDate = (date) => {

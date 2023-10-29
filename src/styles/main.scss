@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap');
 @import 'theme.scss';
 @import 'datepicker.scss';
-@import 'mobile.scss';
 
 * {
 	box-sizing: border-box;
@@ -203,6 +202,47 @@ body {
 		&:hover {
 			transition: all 0.5s ease-in-out;
 			color: $colorMain;
+		}
+	}
+}
+
+@media screen and (max-width: $tablet) {
+	.search {
+		&__wrapper {
+			max-width: 75%;
+		}
+	}
+
+	.container {
+		padding: 10px;
+	}
+}
+
+@media only screen and (max-width: $tabletSmall) {
+	.search {
+		&__wrapper {
+			max-width: 90%;
+		}
+	}
+
+	.card-container {
+		margin-top: 10px;
+		&__card {
+			width: calc(45% - 12px);
+		}
+	}
+}
+
+@media screen and (max-width: $mobile) {
+	.search {
+		&__container {
+			flex-direction: column;
+		}
+	}
+
+	.card-container {
+		&__card {
+			flex: 0 0 90%;
 		}
 	}
 }
