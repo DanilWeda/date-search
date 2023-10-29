@@ -1,3 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap');
+@import 'theme.scss';
+
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	/* ico */
+	--mail-ico: url('/src/assets/mail.svg') no-repeat center center;
+	--phone-ico: url('/src/assets/phone.svg') no-repeat center center;
+	--birth-ico: url('/src/assets/birth.svg') no-repeat center center;
+	--sex-ico: url('/src/assets/sex.svg') no-repeat center center;
+	--site-ico: url('/src/assets/site.svg') no-repeat center center;
+}
+
 body {
-	background-color: red;
+	margin: 0;
+	background-color: $backgroundPrimary;
+	font-family: $familyPrimary;
+	font-size: $sizeMain;
+	font-weight: $wightNormal;
+}
+
+.main-container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	background-color: $backgroundPrimary;
+}
+
+.container {
+	max-width: 1440px;
+	width: 100%;
+	padding: 0px 80px;
+	display: flex;
+	justify-content: center;
+}
+
+.search {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	&__wrapper {
+		max-width: 65%;
+		width: 100%;
+		margin-top: 80px;
+	}
+	&__title {
+		font-family: $familySecondary;
+		font-size: 24px;
+		margin-top: 0;
+		color: $colorMain;
+		font-weight: $wightBold;
+	}
+	&__container {
+		display: flex;
+		width: 100%;
+		gap: 24px;
+		padding: 24px;
+		background-color: $backgroundSecondary;
+	}
+}
+
+.btn {
+	padding: 13px 32px 13px 32px;
+	border: none;
+	background-color: #0d326c;
+	color: #ffffff;
+	width: 100%;
+	cursor: pointer;
+}
+
+.date {
+	display: flex;
+	gap: 8px;
+	flex-direction: column;
+	width: 100%;
+	flex: 0 0 30%;
+	&__text {
+		font-family: $familySecondary;
+		font-size: $sizeMin;
+		font-weight: $wightSub;
+		line-height: 22px;
+		padding: 0;
+		margin: 0;
+	}
+	&__input {
+		background-color: $backgroundWhite;
+		padding: 13px 32px 13px 32px;
+	}
+	&__btn {
+		margin-top: 30px;
+	}
+}
+
+.card-container {
+	flex-wrap: wrap;
+	margin-top: 45px;
+	display: flex;
+	gap: 24px;
+	justify-content: center;
+	margin-bottom: 60px;
+	&__card {
+		flex: 0 0 30%;
+		background-color: $backgroundWhite;
+		border-radius: 2px;
+		gap: 24px;
+		border: 1px solid #eaeaed80;
+		padding: 32px 24px 32px 24px;
+	}
+}
+
+.card {
+	&__name {
+		font-family: $familySecondary;
+		font-size: $sizeMain;
+		font-weight: $wightBold;
+		line-height: 25px;
+	}
+
+	&__list {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		padding-left: 28px;
+		position: relative;
+		&::before {
+			content: '';
+			width: 20px;
+			height: 20px;
+			left: 0;
+			position: absolute;
+		}
+		&--mail {
+			&::before {
+				background: var(--mail-ico);
+			}
+		}
+		&--phone {
+			&::before {
+				background: var(--phone-ico);
+			}
+		}
+		&--birth {
+			&::before {
+				background: var(--birth-ico);
+			}
+		}
+		&--sex {
+			&::before {
+				background: var(--sex-ico);
+			}
+		}
+		&--site {
+			&::before {
+				background: var(--site-ico);
+			}
+		}
+	}
+
+	&__item-text {
+		font-size: $sizeMain;
+		font-weight: $wightNormal;
+		line-height: 25px;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+@media screen and (max-width: $tablet) {
+	.search {
+		&__wrapper {
+			max-width: 75%;
+		}
+	}
+}
+
+@media only screen and (max-width:$tabletSmall) {
+	.search {
+		&__wrapper {
+			max-width: 90%;
+		}
+	}
+
+	.container {
+		padding: 10px;
+	}
+}
+
+@media screen and (max-width: $mobile) {
+	.search {
+		&__container {
+			flex-direction: column;
+		}
+	}
+
+	.card-container {
+		&__card {
+			flex: 0 0 90%;
+		}
+	}
 }
