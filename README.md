@@ -1,6 +1,6 @@
 # Info
 
-[DEMO LINK](https://danilweda.github.io/mk-search/)
+[DEMO LINK](https://danilweda.github.io/date-search/)
 
 Run the development server:
 `npm run dev`
