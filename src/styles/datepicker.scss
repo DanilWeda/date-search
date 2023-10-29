@@ -1,0 +1,156 @@
+.calendar-wrapper {
+	position: relative;
+}
+
+.calendar-input {
+	background-color: $backgroundWhite;
+	padding: 13px 8px 13px 8px;
+	border: 1px solid #8c8ca1;
+	outline: none;
+	border-radius: 2px;
+	width: 100%;
+}
+
+.calendar-container {
+	z-index: 1;
+	position: absolute;
+	max-width: 450px;
+	min-width: 320px;
+	left: 50%;
+	background: $backgroundWhite;
+	border-radius: 10px;
+	box-shadow: 0 15px 40px #0000001f;
+	transform: translateX(-50%);
+
+	&__header {
+		display: flex;
+		align-items: center;
+		padding: 25px 30px 10px;
+		justify-content: space-between;
+	}
+
+	&__icons {
+		display: flex;
+	}
+
+	&__symbols {
+		height: 38px;
+		width: 38px;
+		cursor: pointer;
+		color: #878787;
+		text-align: center;
+		line-height: 32px;
+		border-radius: 50%;
+
+		&:last-child {
+			margin-right: -10px;
+		}
+
+		&:hover {
+			background: #f2f2f2;
+		}
+	}
+
+	&__arrow {
+		border: solid $colorMain;
+		border-width: 0 3px 3px 0;
+		display: inline-block;
+		padding: 3px;
+
+		&--left {
+			transform: rotate(135deg);
+			-webkit-transform: rotate(135deg);
+		}
+
+		&--right {
+			transform: rotate(-45deg);
+			-webkit-transform: rotate(-45deg);
+		}
+	}
+
+	&__current-date {
+		font-size: 24px;
+		margin: 0;
+		font-weight: 500;
+	}
+
+	&__calendar {
+		padding: 20px;
+
+		.off-day {
+			pointer-events: none;
+		}
+
+		ul {
+			display: flex;
+			flex-wrap: wrap;
+			list-style: none;
+			text-align: center;
+			padding: 0;
+			margin: 0;
+		}
+
+		li {
+			color: #333;
+			width: calc(100% / 7);
+			padding: 0px 8px;
+			font-size: 1.07rem;
+		}
+	}
+
+	&__days {
+		margin-bottom: 20px;
+
+		li {
+			z-index: 1;
+			cursor: pointer;
+			position: relative;
+			margin-top: 30px;
+			&:not(.active):hover::before {
+				background: #f2f2f2;
+			}
+		}
+
+		li.inactive {
+			color: #aaa;
+		}
+
+		li.active {
+			color: #fff;
+			pointer-events: none;
+			&::before {
+				background: #9b59b6;
+			}
+		}
+		li.choose {
+			color: #fff;
+
+			&:hover::before {
+				background: #8c8ca1;
+			}
+
+			&::before {
+				background: #8c8ca1;
+			}
+		}
+
+		li::before {
+			position: absolute;
+			content: '';
+			left: 50%;
+			top: 50%;
+			height: 40px;
+			width: 40px;
+			z-index: -1;
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	&__weeks {
+		li {
+			font-weight: 500;
+			cursor: default;
+		}
+	}
+}
