@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap');
 @import 'theme.scss';
 @import 'datepicker.scss';
+@import 'mobile.scss';
 
 * {
 	box-sizing: border-box;
@@ -11,7 +12,7 @@
 	--mail-ico: url('/src/assets/mail.svg') no-repeat center center;
 	--phone-ico: url('/src/assets/phone.svg') no-repeat center center;
 	--birth-ico: url('/src/assets/birth.svg') no-repeat center center;
-	--sex-ico: url('/src/assets/sex.svg') no-repeat center center;
+	--gender-ico: url('/src/assets/gender.svg') no-repeat center center;
 	--site-ico: url('/src/assets/site.svg') no-repeat center center;
 	--calendar-ico: url('/src/assets/calendar.svg') no-repeat center center;
 }
@@ -70,10 +71,10 @@ body {
 }
 
 .btn {
-	padding: 13px 32px 13px 32px;
+	padding: 13px 32px;
 	border: none;
-	background-color: #0d326c;
-	color: #ffffff;
+	background-color: $colorSecondary;
+	color: $backgroundPaper;
 	width: 100%;
 	cursor: pointer;
 }
@@ -120,11 +121,11 @@ body {
 	margin-bottom: 60px;
 	&__card {
 		width: 30%;
-		background-color: $backgroundWhite;
+		background-color: $backgroundPaper;
 		border-radius: 2px;
 		gap: 24px;
 		border: 1px solid #eaeaed80;
-		padding: 32px 24px 32px 24px;
+		padding: 32px 24px;
 	}
 }
 
@@ -171,9 +172,9 @@ body {
 				background: var(--birth-ico);
 			}
 		}
-		&--sex {
+		&--gender {
 			&::before {
-				background: var(--sex-ico);
+				background: var(--gender-ico);
 			}
 		}
 		&--site {
@@ -202,45 +203,6 @@ body {
 		&:hover {
 			transition: all 0.5s ease-in-out;
 			color: $colorMain;
-		}
-	}
-}
-
-@media screen and (max-width: $tablet) {
-	.search {
-		&__wrapper {
-			max-width: 75%;
-		}
-	}
-
-	.container {
-		padding: 10px;
-	}
-}
-
-@media only screen and (max-width: $tabletSmall) {
-	.search {
-		&__wrapper {
-			max-width: 90%;
-		}
-	}
-	.card-container {
-		&__card {
-			width: calc(45% - 12px);
-		}
-	}
-}
-
-@media screen and (max-width: $mobile) {
-	.search {
-		&__container {
-			flex-direction: column;
-		}
-	}
-
-	.card-container {
-		&__card {
-			flex: 0 0 90%;
 		}
 	}
 }
