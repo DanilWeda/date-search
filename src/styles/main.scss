@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap');
 @import 'theme.scss';
+@import 'datepicker.scss';
 
 * {
 	box-sizing: border-box;
@@ -12,6 +13,7 @@
 	--birth-ico: url('/src/assets/birth.svg') no-repeat center center;
 	--sex-ico: url('/src/assets/sex.svg') no-repeat center center;
 	--site-ico: url('/src/assets/site.svg') no-repeat center center;
+	--calendar-ico: url('/src/assets/calendar.svg') no-repeat center center;
 }
 
 .hide {
@@ -91,8 +93,18 @@ body {
 		margin: 0;
 	}
 	&__input {
-		background-color: $backgroundWhite;
-		padding: 13px 32px 13px 32px;
+		position: relative;
+		&::before {
+			content: '';
+			width: 20px;
+			height: 20px;
+			top: 50%;
+			right: 8%;
+			pointer-events: none;
+			position: absolute;
+			transform: translateY(-50%);
+			background: var(--calendar-ico);
+		}
 	}
 	&__btn {
 		margin-top: 30px;
