@@ -116,7 +116,8 @@ datepickerInputs.forEach((dateInput, pickerId) => {
 
 	dateInput.addEventListener('focus', () => {
 		closeDatepickers();
-		const defaultDate = `200${pickerId}-01-01`;
+		const defaultYear = !pickerId ? 2000 : 2023;
+		const defaultDate = `${defaultYear}-01-01`;
 		const isActive = activeDatePickers.find((active) => active.id === pickerId);
 		if (!isActive) {
 			const date = changeDateSeparator(dates[pickerId], true, '-') || defaultDate;

@@ -1,6 +1,6 @@
 import moment from 'moment/moment';
 
-import { concatYearAndMonth, formatDate, generateDaysClass, getCorrectDayOrMonth } from './helpers/formatDate';
+import { concatYearAndMonth, formatDate, generateDaysClass, getCorrectDayOrMonth, getStartWithDayDate } from './helpers/formatDate';
 
 export class Datepicker {
 	constructor(options) {
@@ -25,10 +25,10 @@ export class Datepicker {
 						<span id="datepicker-year-title"></span>
 					</p>
 					<div class="calendar-container__icons">
-						<span id="prev" class="calendar-container__symbols">
+						<span id="month-prev" class="calendar-container__symbols">
 							<i class="calendar-container__arrow calendar-container__arrow--left"></i>
 						</span>
-						<span id="next" class="calendar-container__symbols">
+						<span id="month-next" class="calendar-container__symbols">
 							<i class="calendar-container__arrow calendar-container__arrow--right"></i>
 						</span>
 					</div>
@@ -52,8 +52,8 @@ export class Datepicker {
 
 		this.datepickerContainer = document.getElementById(`datepicker-${this.id}`);
 		this.dateListElement = this.datepickerContainer.querySelector('#calendar-days');
-		this.nextMonthElement = this.datepickerContainer.querySelector('#next');
-		this.prevMonthElement = this.datepickerContainer.querySelector('#prev');
+		this.nextMonthElement = this.datepickerContainer.querySelector('#month-next');
+		this.prevMonthElement = this.datepickerContainer.querySelector('#month-prev');
 		this.setHeaderYearAndMonthRange();
 	}
 
@@ -88,9 +88,14 @@ export class Datepicker {
 		monthArray.forEach((day) => {
 			const currentDay = getCorrectDayOrMonth(day);
 			const currentMonth = getCorrectDayOrMonth(this.currentMonth);
+
 			const dateValue = formatDate(currentDay, currentMonth, this.currentYear);
 
-			const newDay = `<li data-value=${dateValue} class=${generateDaysClass(day, dateValue, this.date)}>${day}</li>`;
+			const userDate = new Date(getStartWithDayDate(dateValue)).getTime();
+			const now = new Date().getTime();
+			const offDate = userDate > now;
+
+			const newDay = `<li data-value=${dateValue} class=${generateDaysClass(day, dateValue, this.date, offDate)}>${day}</li>`;
 			listOfDays.insertAdjacentHTML('beforeend', newDay);
 		});
 	}
@@ -136,6 +141,11 @@ export class Datepicker {
 
 		onChangeDateMonth();
 		this.setHeaderYearAndMonthRange();
+	}
+
+	changeYear(prev) {
+		if (prev) return (this.currentYear = this.changeYear - 1);
+		return (this.currentYear = this.currentYear + 1);
 	}
 
 	daysInCurrentMonth() {

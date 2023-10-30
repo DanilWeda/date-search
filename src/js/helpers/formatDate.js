@@ -1,7 +1,7 @@
-export const generateDaysClass = (propDay, currentValue, date) => {
+export const generateDaysClass = (propDay, currentValue, date, offDate) => {
 	const isActiveDay = currentValue === changeDateSeparator(date, true);
 	switch (true) {
-		case !propDay:
+		case !propDay || offDate:
 			return 'off-day';
 		case isActiveDay:
 			return 'active';
@@ -33,4 +33,9 @@ export const concatYearAndMonth = (year, month) => {
 
 export const getNumFromDate = (date) => {
 	return date?.split('.').join('').split('_').join('');
+};
+
+export const getStartWithDayDate = (date) => {
+	const [month, valueDay, year] = changeDateSeparator(date, false, '-').split('-');
+	return [valueDay, month, year].join('-');
 };
