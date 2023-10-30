@@ -11,7 +11,7 @@
 	--mail-ico: url('/src/assets/mail.svg') no-repeat center center;
 	--phone-ico: url('/src/assets/phone.svg') no-repeat center center;
 	--birth-ico: url('/src/assets/birth.svg') no-repeat center center;
-	--sex-ico: url('/src/assets/sex.svg') no-repeat center center;
+	--gender-ico: url('/src/assets/gender.svg') no-repeat center center;
 	--site-ico: url('/src/assets/site.svg') no-repeat center center;
 	--calendar-ico: url('/src/assets/calendar.svg') no-repeat center center;
 }
@@ -70,10 +70,10 @@ body {
 }
 
 .btn {
-	padding: 13px 32px 13px 32px;
+	padding: 13px 32px;
 	border: none;
-	background-color: #0d326c;
-	color: #ffffff;
+	background-color: $colorSecondary;
+	color: $backgroundPaper;
 	width: 100%;
 	cursor: pointer;
 }
@@ -120,11 +120,11 @@ body {
 	margin-bottom: 60px;
 	&__card {
 		width: 30%;
-		background-color: $backgroundWhite;
+		background-color: $backgroundPaper;
 		border-radius: 2px;
 		gap: 24px;
 		border: 1px solid #eaeaed80;
-		padding: 32px 24px 32px 24px;
+		padding: 32px 24px;
 	}
 }
 
@@ -171,9 +171,9 @@ body {
 				background: var(--birth-ico);
 			}
 		}
-		&--sex {
+		&--gender {
 			&::before {
-				background: var(--sex-ico);
+				background: var(--gender-ico);
 			}
 		}
 		&--site {
@@ -224,7 +224,9 @@ body {
 			max-width: 90%;
 		}
 	}
+
 	.card-container {
+		margin-top: 10px;
 		&__card {
 			width: calc(45% - 12px);
 		}

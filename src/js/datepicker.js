@@ -1,6 +1,6 @@
 import moment from 'moment/moment';
 
-import { concatYearAndMonth, formatDate, generateDaysClass, getCorrectDayOrMonth } from './helpers';
+import { concatYearAndMonth, formatDate, generateDaysClass, getCorrectDayOrMonth } from './helpers/formatDate';
 
 export class Datepicker {
 	constructor(options) {
@@ -16,7 +16,8 @@ export class Datepicker {
 	}
 
 	render() {
-		const datepickerMarkup = `<div id="datepicker-${this.id}" class="calendar-wrapper">
+		const datePickerId = `datepicker-${this.id}`;
+		const datepickerMarkup = `<div id="${datePickerId}" class="calendar-wrapper">
 			<div class="calendar-container">
 				<header class="calendar-container__header">
 					<p class="calendar-container__current-date">
@@ -71,12 +72,16 @@ export class Datepicker {
 		const daysInMonth = this.daysInCurrentMonth();
 		const listOfDays = this.dateListElement;
 		listOfDays.innerHTML = '';
+		const weekLength = 7;
+		const weekendEnd = monthArray.length % weekLength !== 0;
+		const notLastWeekDay = firstDayOfMonth !== weekLength;
 
-		if (firstDayOfMonth !== 7) for (let i = 1; i <= firstDayOfMonth; i++) monthArray.push('');
+		if (notLastWeekDay) for (let i = 1; i <= firstDayOfMonth; i++) monthArray.push('');
+
 		for (let i = 1; i <= daysInMonth; i++) monthArray.push(i);
 
-		if (monthArray.length % 7 !== 0) {
-			const trailingEmptySlots = 7 - (monthArray.length % 7);
+		if (weekendEnd) {
+			const trailingEmptySlots = weekLength - (monthArray.length % weekLength);
 			for (let i = 1; i <= trailingEmptySlots; i++) monthArray.push('');
 		}
 

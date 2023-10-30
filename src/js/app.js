@@ -1,60 +1,10 @@
 import IMask from 'imask';
 
 import { Datepicker } from './datepicker';
-import {
-	changeDateSeparator,
-	createSearchParams,
-	getInputDates,
-	getNumFromDate,
-	getUserLoaders,
-	getUsers,
-	removeUserLoaders,
-	toggleError,
-} from './helpers';
-class User {
-	constructor(data) {
-		this.user = data;
-		this.container = document.getElementById('card-section');
-		this.renderUser();
-	}
-
-	async renderUser() {
-		const { id, firstname = '-', lastname = '-', email = '-', phone = '-', birthday = '-', gender = '-', website = '-' } = this.user;
-		const renderBirthday = birthday.split().reverse().join().replace(/-/g, '.');
-		const userMarkup = `
-			<div id="user-${id}" class="card-container__card card">
-				<h2 class="card__name">${firstname} ${lastname}</h2>
-				<div class="card__inner">
-					<ul class="card__list">
-						<li class="card__item card__item--mail">
-							<p class="card__item-text">
-								<a href="mailto:${email}" class="card__item-link">${email}</a>
-							</p>
-						</li>
-						<li class="card__item card__item--phone">
-							<p class="card__item-text">
-								<a href="tel:${phone}" class="card__item-link">${phone}</a>
-							</p>
-						</li>
-						<li class="card__item card__item--birth">
-							<p class="card__item-text">${renderBirthday}</p>
-						</li>
-						<li class="card__item card__item--sex">
-							<p class="card__item-text">${gender}</p>
-						</li>
-						<li class="card__item card__item--site">
-							<p class="card__item-text">
-								<a href="${website}" target="_blank" class="card__item-link">${website}</a>
-							</p>
-						</li>
-					</ul>
-				</div>
-			</div>
-		`;
-
-		this.container.insertAdjacentHTML('beforeend', userMarkup);
-	}
-}
+import { getUserLoaders, getUsers, removeUserLoaders, toggleError } from './helpers';
+import { changeDateSeparator, getNumFromDate } from './helpers/formatDate';
+import { createSearchParams, getInputDates } from './helpers/searchParams';
+import { User } from './user';
 
 const createUsers = async () => {
 	const cardContainer = document.getElementById('card-section');
@@ -83,14 +33,19 @@ updateButton.addEventListener('click', () => {
 
 const validate = (startDate, endDate) => {
 	const countNumOfDateValue = 8;
+
 	const startDateSymbolsLength = getNumFromDate(startDate)?.length;
 	const endDateSymbolsLength = getNumFromDate(endDate)?.length;
+
 	const startDateTime = new Date(changeDateSeparator(startDate, true, '-')).getTime();
 	const endDateTime = new Date(changeDateSeparator(endDate, true, '-')).getTime();
+
 	const startDateEquals = endDateSymbolsLength ? startDateTime < endDateTime : true;
 	const endDateEquals = startDateSymbolsLength ? startDateEquals < endDateTime : true;
+
 	const correctStartDate = startDateSymbolsLength === countNumOfDateValue && startDateEquals;
 	const correctEndDate = endDateSymbolsLength === countNumOfDateValue && endDateEquals;
+
 	return { correctStartDate, correctEndDate };
 };
 
@@ -107,8 +62,7 @@ const closeDatepickers = () => {
 const openDatepickers = (id) => {
 	activeDatePickers.forEach((active) => {
 		const container = active.id === id ? active.datepickerContainer : null;
-		if (!container) return;
-		if (!container.classList.contains('hide')) return;
+		if (!container || !container.classList.contains('hide')) return;
 		container.classList.remove('hide');
 	});
 };
@@ -148,25 +102,25 @@ const handleOutside = (event) => {
 	if (!event.target.id.includes('calendar-input')) closeDatepickers();
 };
 
-datepickerInputs.forEach((dateInput, idx) => {
+datepickerInputs.forEach((dateInput, pickerId) => {
 	const dates = getInputDates();
-	dateInput.value = dates[idx];
+	dateInput.value = dates[pickerId];
 
 	IMask(dateInput, {
 		mask: Date,
-		min: new Date(1970, 0, 1),
-		max: new Date(2023, 0, 1),
+		min: new Date(1900, 0, 1),
+		max: new Date(2024, 0, 1),
 
 		lazy: false,
 	});
 
 	dateInput.addEventListener('focus', () => {
 		closeDatepickers();
-		const defaultDate = `200${idx}-01-01`;
-		const isActive = activeDatePickers.find((active) => active.id === idx);
+		const defaultDate = `200${pickerId}-01-01`;
+		const isActive = activeDatePickers.find((active) => active.id === pickerId);
 		if (!isActive) {
-			const test = changeDateSeparator(dates[idx], true, '-') || defaultDate;
-			const datepicker = createPicker(idx, test);
+			const date = changeDateSeparator(dates[pickerId], true, '-') || defaultDate;
+			const datepicker = createPicker(pickerId, date);
 			activeDatePickers.push(datepicker);
 			datepicker.render();
 			datepicker.datepickerContainer.addEventListener('click', handleStopPropagation);
@@ -174,7 +128,7 @@ datepickerInputs.forEach((dateInput, idx) => {
 			datepicker.prevMonthElement.addEventListener('click', handleChangePrevMonth(datepicker));
 			datepicker.dateListElement.addEventListener('click', handleChangeDays(datepicker, dateInput));
 		} else {
-			openDatepickers(idx);
+			openDatepickers(pickerId);
 		}
 
 		document.body.addEventListener('click', handleOutside);

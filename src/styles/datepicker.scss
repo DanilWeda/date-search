@@ -3,9 +3,9 @@
 }
 
 .calendar-input {
-	background-color: $backgroundWhite;
-	padding: 13px 8px 13px 8px;
-	border: 1px solid #8c8ca1;
+	background-color: $backgroundPaper;
+	padding: 13px 8px;
+	border: 1px solid $backgroundThird;
 	outline: none;
 	border-radius: 2px;
 	width: 100%;
@@ -17,9 +17,9 @@
 	max-width: 450px;
 	min-width: 320px;
 	left: 50%;
-	background: $backgroundWhite;
+	background: $backgroundPaper;
 	border-radius: 10px;
-	box-shadow: 0 15px 40px #0000001f;
+	box-shadow: 0 15px 40px $shadow;
 	transform: translateX(-50%);
 
 	&__header {
@@ -37,17 +37,12 @@
 		height: 38px;
 		width: 38px;
 		cursor: pointer;
-		color: #878787;
 		text-align: center;
 		line-height: 32px;
 		border-radius: 50%;
 
-		&:last-child {
-			margin-right: -10px;
-		}
-
 		&:hover {
-			background: #f2f2f2;
+			background: $backgroundPaperLight;
 		}
 	}
 
@@ -91,7 +86,6 @@
 		}
 
 		li {
-			color: #333;
 			width: calc(100% / 7);
 			padding: 0px 8px;
 			font-size: 1.07rem;
@@ -107,36 +101,32 @@
 			position: relative;
 			margin-top: 30px;
 			&:not(.active):hover::before {
-				background: #f2f2f2;
+				background: $backgroundPaperLight;
 			}
-		}
-
-		li.inactive {
-			color: #aaa;
 		}
 
 		li.active {
-			color: #fff;
+			color: $backgroundPaper;
 			pointer-events: none;
 			&::before {
-				background: #9b59b6;
+				background: $colorSecondary;
 			}
 		}
 		li.choose {
-			color: #fff;
+			color: $backgroundPaper;
 
 			&:hover::before {
-				background: #8c8ca1;
+				background: $backgroundThird;
 			}
 
 			&::before {
-				background: #8c8ca1;
+				background: $backgroundThird;
 			}
 		}
 
 		li::before {
-			position: absolute;
 			content: '';
+			position: absolute;
 			left: 50%;
 			top: 50%;
 			height: 40px;
