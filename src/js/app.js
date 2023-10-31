@@ -41,10 +41,13 @@ const validate = (startDate, endDate) => {
 	const endDateTime = new Date(changeDateSeparator(endDate, true, '-')).getTime();
 
 	const startDateEquals = endDateSymbolsLength ? startDateTime < endDateTime : true;
-	const endDateEquals = startDateSymbolsLength ? startDateEquals < endDateTime : true;
+	const endDateEquals = startDateSymbolsLength ? startDateTime < endDateTime : true;
 
-	const correctStartDate = startDateSymbolsLength === countNumOfDateValue && startDateEquals;
-	const correctEndDate = endDateSymbolsLength === countNumOfDateValue && endDateEquals;
+	const emptyStartDate = startDateSymbolsLength !== countNumOfDateValue;
+	const emptyEndDate = endDateSymbolsLength !== countNumOfDateValue;
+
+	const correctStartDate = !emptyStartDate && startDateEquals;
+	const correctEndDate = !emptyEndDate && endDateEquals;
 
 	return { correctStartDate, correctEndDate };
 };
