@@ -109,9 +109,9 @@ datepickerInputs.forEach((dateInput, pickerId) => {
 	IMask(dateInput, {
 		mask: Date,
 		min: new Date(1900, 0, 1),
-		max: new Date(2024, 0, 1),
+		max: new Date(),
 
-		lazy: false,
+		lazy: true,
 	});
 
 	dateInput.addEventListener('focus', () => {

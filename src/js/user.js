@@ -1,3 +1,5 @@
+import { changeDateSeparator } from './helpers/formatDate';
+
 export class User {
 	constructor(data) {
 		this.user = data;
@@ -7,7 +9,7 @@ export class User {
 
 	async renderUser() {
 		const { id, firstname = '-', lastname = '-', email = '-', phone = '-', birthday = '-', gender = '-', website = '-' } = this.user;
-		const renderBirthday = birthday.split().reverse().join().replace(/-/g, '.');
+		const renderBirthday = changeDateSeparator(birthday, true, '.');
 		const userMarkup = `
 			<div id="user-${id}" class="card-container__card card">
 				<h2 class="card__name">${firstname} ${lastname}</h2>
